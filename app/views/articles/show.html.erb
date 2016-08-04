@@ -4,7 +4,10 @@
 </p>
 
 <h3>Comments</h3>
-<%= render partial: 'comment', collection: @article.comments.reverse %>
+<%= render partial: 'articles/comment', collection: @article.comments.reverse %>
+
+<!-- Form (partial) for adding a comment -->
+<%= render partial: 'comments/form' %>
 
 <%= link_to "Home", articles_path %>
 <%= link_to "Edit", edit_article_path(@article) %>
