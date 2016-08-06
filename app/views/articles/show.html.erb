@@ -10,8 +10,12 @@
   <% end %>
 </p>
 
-<%= link_to "Edit", edit_article_path(@article) %>
-<%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"} %>
+<% if author_signed_in? and current_author.id == @article.id %>
+	<p> 
+		<%= link_to "Edit", edit_article_path(@article) %>
+		<%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"} %>
+	</p>
+<% end %>
 
 <h3>Comments (<%= @article.comments.count %>)</h3>
 <%= render partial: 'articles/comment', collection: @article.comments.reverse %>

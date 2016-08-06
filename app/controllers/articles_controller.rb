@@ -15,11 +15,12 @@ class ArticlesController < ApplicationController
 	end
 
 	def new
-		@article = Article.new
+		# @article = Article.new
+		@article = current_author.articles.build
 	end
 
 	def create
-		@article = Article.new(article_params)
+		@article = current_author.articles.build(article_params)
 		if @article.save
 			flash.notice = "Article '#{@article.title}' Created!"
 			redirect_to article_path(@article)
