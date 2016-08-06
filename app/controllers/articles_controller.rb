@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
 
 	include ArticlesHelper
 
-	before_action :authenticate_author!, except: [:index, :show]
+	before_action :authenticate_author!, except: [:index, :show, :popular]
 	before_action :find_article, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -10,6 +10,8 @@ class ArticlesController < ApplicationController
 	end
 
 	def show
+		@article.increment(:view_counter, 1)
+		@article.save
 		@comment = Comment.new
 		@comment.article_id = @article.id
 	end
@@ -46,6 +48,11 @@ class ArticlesController < ApplicationController
 		else
 			render :edit
 		end
+	end
+
+	def popular
+		@articles = Article.order('articles.view_counter DESC').limit(3)
+		render :popular
 	end
 
 end

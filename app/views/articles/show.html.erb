@@ -1,4 +1,9 @@
-<h1><%= @article.title %></h1>
+<h1>
+	<%= @article.title %>
+	<span style="font-size: 12px;">
+		Read <%= pluralize(@article.view_counter, 'time') %>
+	</span>
+</h1>
 <p><%= @article.body %></p>
 <% if @article.image.exists? %>
 	<p><%= image_tag @article.image.url(:medium) %></p>

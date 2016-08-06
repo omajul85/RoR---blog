@@ -1,10 +1,5 @@
-<h1>Articles</h1>
+<h1>All articles</h1>
 
-<ul id="articles">
-	<% @articles.each do |a| %>
-		<li>
-			<%= link_to a.title, article_path(a), class: 'article_title' %>
-		</li>
-	<% end %>
-</ul>
+<%= render partial: 'list' %>
+
 <%= link_to "New Article", new_article_path, class: "new_article" %>
