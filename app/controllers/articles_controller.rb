@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
 
 	include ArticlesHelper
 
+	before_action :authenticate_author!, except: [:index, :show]
 	before_action :find_article, only: [:show, :edit, :update, :destroy]
 
 	def index
