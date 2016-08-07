@@ -6,7 +6,13 @@ class ArticlesController < ApplicationController
 	before_action :find_article, only: [:show, :edit, :update, :destroy]
 
 	def index
-	  @articles = Article.all
+	  @articles = Article.last(10)
+	  
+	  # RSS Feed
+	  respond_to do |format|
+      format.html
+      format.rss { render :layout => false }
+    end
 	end
 
 	def show
