@@ -19,9 +19,9 @@ From a user perspective, these are the instructions for how to download and run 
 
 ```sh
  $ git clone https://github.com/omajul85/RoR---blog
- $ cd instagram-challenge/
+ $ cd RoR---blog/
  $ bundle install
- $ bin/rake db:setup
+ $ bin/rake db:setup (if this does not migrate the db, run bin/rake db:migrate)
 ```
 To run the app:
 ```sh
