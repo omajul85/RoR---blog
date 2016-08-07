@@ -21,9 +21,10 @@
       <h6>
         <% if author_signed_in? %>
           <p>Logged in as <%= current_author.email %></p>
-          <%= link_to "Log out", destroy_author_session_path, method: :delete %>
+          <%= link_to "Sign out", destroy_author_session_path, method: :delete %>
         <% else %>
-          <%= link_to "Log in", new_author_session_path %>
+          <%= link_to "Sign up", new_author_registration_path %>
+          <%= link_to "Sign in", new_author_session_path %>
         <% end %>
         <%= link_to "Top 3", popular_articles_path %>
       </h6>
