@@ -1,20 +1,22 @@
-<h1>
+<h2>
 	<%= @article.title %>
 	<span style="font-size: 12px;">
 		Read <%= pluralize(@article.view_counter, 'time') %>
 	</span>
-</h1>
-<p><%= @article.body %></p>
-<% if @article.image.exists? %>
-	<p><%= image_tag @article.image.url(:medium) %></p>
-<% end %>
-<p>
-  Tags:
-  <% @article.tags.each do |tag| %>
-    <%= link_to tag.name, tag_path(tag) %>
+</h2>
+<h5><span class="glyphicon glyphicon-time"></span> Post on <%= @article.created_at.strftime('%b %d, %Y at %H:%M') %></h5>
+<h5>
+	Tags:
+	<% @article.tags.each do |tag| %>
+    <span class="label label-info"><%= link_to tag.name, tag_path(tag) %></span>
   <% end %>
-</p>
-
+</h5>
+<br>
+<% if @article.image.exists? %>
+	<p class="centered"><%= image_tag @article.image.url(:medium) %></p>
+<% end %>
+<p><%= @article.body %></p>
+<br>
 <% if author_signed_in? and current_author.id == @article.id %>
 	<p> 
 		<%= link_to "Edit", edit_article_path(@article) %>
@@ -24,6 +26,8 @@
 
 <h3>Comments (<%= @article.comments.count %>)</h3>
 <%= render partial: 'articles/comment', collection: @article.comments.reverse %>
+
+<br><br>
 
 <!-- Form (partial) for adding a comment -->
 <%= render partial: 'comments/form' %>

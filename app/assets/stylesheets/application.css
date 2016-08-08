@@ -22,3 +22,11 @@ footer {
   }
   .row.content {height: auto;}
 }
+
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  resize: vertical;
+  .box-sizing(border-box);
+}
