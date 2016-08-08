@@ -16,9 +16,9 @@
   <div class="container-fluid">
     <div class="row content">
       <div class="col-sm-3 sidenav">
-        <h4>Blogger by omajul85</h4>
+        <h4><%= link_to "Blogger by omajul85", articles_path %></h4>
         <ul class="nav nav-pills nav-stacked">
-          <li><%= link_to "Home", articles_path %></li>
+          <li><%= link_to "New Article", new_article_path %></li>
           <li><%= link_to "Top 3", popular_articles_path %></li>
           <li><a href="#section3">Tags</a></li>
         </ul><br>
@@ -33,33 +33,42 @@
       </div>
 
       <div class="col-sm-9">
-        <header class="container-fluid">
-          <% if author_signed_in? %>
-            <p>Logged in as <%= current_author.email %></p>
-            <%= link_to "Sign out", destroy_author_session_path, method: :delete %>
-          <% else %>
-            <%= link_to "Sign up", new_author_registration_path %>
-            <%= link_to "Sign in", new_author_session_path %>
-          <% end %>
-          <%= link_to "Top 3", popular_articles_path %>
-        </header>
+        <nav class="navbar navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <% if author_signed_in? %>
+              <h5>Logged in as <%= current_author.email %></h5>
+              <% end %>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <% if author_signed_in? %>
+                <li><%= link_to "Sign out", destroy_author_session_path, method: :delete %></li>
+                <% else %>
+                <li><%= link_to "Sign up", new_author_registration_path %></li>
+                <li><%= link_to "Sign in", new_author_session_path %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <div class="container-fluid alerts">
+            <% if flash.notice %>
+            <div class="alert alert-success fade in">
+              <p><%= flash.notice %></p>
+            </div>
+            <% end %>
+            <% if flash.alert %>
+            <div class="alert alert-danger fade in">
+              <p><%= flash.alert %></p>
+            </div>
+            <% end %>
+          </div>
+        </nav>
+        <hr>
       </div>
 
       <div class="col-sm-9">
         <%= yield %>
-      </div>
-
-      <div class="col-sm-9">
-        <h6>
-          <% if author_signed_in? %>
-          <p>Logged in as <%= current_author.email %></p>
-          <%= link_to "Sign out", destroy_author_session_path, method: :delete %>
-          <% else %>
-          <%= link_to "Sign up", new_author_registration_path %>
-          <%= link_to "Sign in", new_author_session_path %>
-          <% end %>
-          <%= link_to "Top 3", popular_articles_path %>
-        </h6>
       </div>
     </div>
   </div>
