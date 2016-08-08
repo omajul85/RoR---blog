@@ -28,6 +28,5 @@ footer {
   width: 100%;
   min-height: 28px;
   resize: vertical;
-  .box-sizing(border-box);
   margin-bottom: 5px;
 }
